@@ -13,7 +13,7 @@ int main() {
 
     QueryPerformanceFrequency(&freq);
 
-    HMODULE ntdll = LoadLibrary(L"NtDll.dll");
+    HMODULE ntdll = LoadLibrary(L"ntdll.dll");
 
     if (!ntdll) {
         std::cerr << "LoadLibrary failed\n";
