@@ -32,10 +32,6 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    // if (samples) {
-    //	std::cout << args::get(samples);
-    // }
-
     ULONG MinimumResolution, MaximumResolution, CurrentResolution;
     LARGE_INTEGER start, end, freq;
     std::vector<double> sleep_delays;
