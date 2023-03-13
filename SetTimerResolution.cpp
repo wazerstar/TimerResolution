@@ -18,7 +18,7 @@ typedef BOOL(WINAPI *PSET_PROCESS_INFORMATION)(HANDLE, PROCESS_INFORMATION_CLASS
 int main(int argc, char **argv) {
     std::string version = "0.1.0";
 
-    args::ArgumentParser parser("SetTimerResolution " + version);
+    args::ArgumentParser parser("SetTimerResolution " + version + "\nGitHub - https://github.com/amitxv");
     args::HelpFlag help(parser, "help", "display this help menu", {"help"});
     args::ValueFlag<int> resolution(parser, "", "specify the desired resolution in 100-ns units", {"resolution"}, args::Options::Required);
     args::Flag no_console(parser, "no-console", "hide the console window", {"no-console"});
@@ -29,11 +29,11 @@ int main(int argc, char **argv) {
         std::cout << parser;
         return 0;
     } catch (args::ParseError e) {
-        std::cerr << e.what() << std::endl;
+        std::cerr << e.what();
         std::cerr << parser;
         return 1;
     } catch (args::ValidationError e) {
-        std::cerr << e.what() << std::endl;
+        std::cerr << e.what();
         std::cerr << parser;
         return 1;
     }
