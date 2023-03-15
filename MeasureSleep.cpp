@@ -79,14 +79,14 @@ int main(int argc, char **argv) {
     }
 
     if (samples) {
+        sort(sleep_delays.begin(), sleep_delays.end());
+
         double sum = 0;
         for (double delay : sleep_delays) {
             sum += delay;
         }
 
-        auto max = std::max_element(sleep_delays.begin(), sleep_delays.end());
         double average = sum / sleep_delays.size();
-        auto min = std::min_element(sleep_delays.begin(), sleep_delays.end());
 
         // stdev
         double standard_deviation = 0.0;
@@ -97,9 +97,9 @@ int main(int argc, char **argv) {
 
         double stdev = sqrt(standard_deviation / 10);
 
-        std::cout << "\nMax: " << *max << "\n";
+        std::cout << "\nMax: " << sleep_delays.back() << "\n";
         std::cout << "Avg: " << average << "\n";
-        std::cout << "Min: " << *min << "\n";
+        std::cout << "Min: " << sleep_delays.front() << "\n";
         std::cout << "STDEV: " << stdev << "\n";
     }
 }
