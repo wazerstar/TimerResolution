@@ -45,6 +45,11 @@ int main(int argc, char **argv) {
         return 1;
     }
 
+    if (!SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS)) {
+        std::cerr << "SetPriorityClass failed\n";
+        return 1;
+    }
+
     NTQUERYTIMERRESOLUTION NtQueryTimerResolution = (NTQUERYTIMERRESOLUTION)GetProcAddress(ntdll, "NtQueryTimerResolution");
 
     for (int i = 1;; i++) {
