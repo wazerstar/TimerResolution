@@ -10,7 +10,7 @@ See [Fixing timing precision in Windows after "The Great Rule Change"](https://g
 C:\SetTimerResolution.exe --resolution 5000 --no-console
 ```
 
-On Windows Server 21H2+ and Windows 11+, the registry key below should also be used so that requesting a higher resolution is effective on a system-wide level rather than only the calling process.
+Thanks to a comment on the [Great Rule Change](https://randomascii.wordpress.com/2020/10/04/windows-timer-resolution-the-great-rule-change/) article, on Windows Server 21H2+ and Windows 11+, the registry key below can also be used so that requesting a higher resolution is effective on a system-wide level rather than only the calling process.
 
 ```
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\kernel]
