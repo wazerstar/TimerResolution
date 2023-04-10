@@ -42,7 +42,7 @@ int main(int argc, char **argv) {
         FreeConsole();
     }
 
-    ULONG MinimumResolution, MaximumResolution, CurrentResolution;
+    ULONG minimum_resolution, maximum_resolution, current_resolution;
 
     HMODULE ntdll = LoadLibrary(L"ntdll.dll");
     HMODULE kernel32 = LoadLibrary(L"kernel32.dll");
@@ -68,16 +68,16 @@ int main(int argc, char **argv) {
         SetProcessInformation(GetCurrentProcess(), ProcessPowerThrottling, &PowerThrottling, sizeof(PowerThrottling));
     }
 
-    if (NtQueryTimerResolution(&MinimumResolution, &MaximumResolution, &CurrentResolution)) {
+    if (NtQueryTimerResolution(&minimum_resolution, &maximum_resolution, &current_resolution)) {
         std::cerr << "NtQueryTimerResolution failed\n";
         return 1;
     }
 
-    if (NtSetTimerResolution(args::get(resolution), true, &CurrentResolution)) {
+    if (NtSetTimerResolution(args::get(resolution), true, &current_resolution)) {
         std::cerr << "NtSetTimerResolution failed\n";
         return 1;
     }
 
-    std::cout << std::fixed << std::setprecision(6) << "Resolution set to: " << (CurrentResolution / 10000.0) << "ms\n";
+    std::cout << std::fixed << std::setprecision(6) << "Resolution set to: " << (current_resolution / 10000.0) << "ms\n";
     Sleep(INFINITE);
 }

@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    ULONG MinimumResolution, MaximumResolution, CurrentResolution;
+    ULONG minimum_resolution, maximum_resolution, current_resolution;
     LARGE_INTEGER start, end, freq;
     std::vector<double> sleep_delays;
 
@@ -54,7 +54,7 @@ int main(int argc, char **argv) {
 
     for (int i = 1;; i++) {
         // get current resolution
-        if (NtQueryTimerResolution(&MinimumResolution, &MaximumResolution, &CurrentResolution) != 0) {
+        if (NtQueryTimerResolution(&minimum_resolution, &maximum_resolution, &current_resolution) != 0) {
             std::cerr << "NtQueryTimerResolution failed\n";
             return 1;
         }
@@ -68,7 +68,7 @@ int main(int argc, char **argv) {
         double delta_ms = delta_s * 1000;
         double delta_from_sleep = delta_ms - 1;
 
-        std::cout << std::fixed << std::setprecision(6) << "Resolution: " << (CurrentResolution / 10000.0) << "ms, Sleep(1) slept " << delta_ms << "ms (delta: " << delta_from_sleep << ")\n";
+        std::cout << std::fixed << std::setprecision(6) << "Resolution: " << (current_resolution / 10000.0) << "ms, Sleep(1) slept " << delta_ms << "ms (delta: " << delta_from_sleep << ")\n";
 
         if (samples) {
             sleep_delays.push_back(delta_from_sleep);
@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
 
         sort(sleep_delays.begin(), sleep_delays.end());
 
-        double sum = 0;
+        double sum = 0.0;
         for (double delay : sleep_delays) {
             sum += delay;
         }
@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
             standard_deviation += pow(delay - average, 2);
         }
 
-        double stdev = sqrt(standard_deviation / 10);
+        double stdev = sqrt(standard_deviation / sleep_delays.size());
 
         std::cout << "\nMax: " << sleep_delays.back() << "\n";
         std::cout << "Avg: " << average << "\n";
