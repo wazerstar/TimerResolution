@@ -78,6 +78,6 @@ int main(int argc, char **argv) {
         return 1;
     }
 
-    std::cout << std::fixed << std::setprecision(6) << "Resolution set to: " << (current_resolution / 10000.0) << "ms\n";
+    std::cout << std::fixed << std::setprecision(12) << "Resolution set to: " << (current_resolution / 10000.0) << "ms\n";
     Sleep(INFINITE);
 }
