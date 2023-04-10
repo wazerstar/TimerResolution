@@ -11,7 +11,7 @@ typedef NTSTATUS(CALLBACK *NTQUERYTIMERRESOLUTION)(
     OUT PULONG CurrentResolution);
 
 int main(int argc, char **argv) {
-    std::string version = "0.1.3";
+    std::string version = "0.1.4";
 
     args::ArgumentParser parser("MeasureSleep " + version + "\nGitHub - https://github.com/amitxv");
     args::HelpFlag help(parser, "help", "display this help menu", {"help"});

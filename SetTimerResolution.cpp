@@ -16,7 +16,7 @@ typedef NTSTATUS(CALLBACK *NTSETTIMERRESOLUTION)(
 typedef BOOL(WINAPI *PSET_PROCESS_INFORMATION)(HANDLE, PROCESS_INFORMATION_CLASS, LPVOID, DWORD);
 
 int main(int argc, char **argv) {
-    std::string version = "0.1.0";
+    std::string version = "0.1.1";
 
     args::ArgumentParser parser("SetTimerResolution " + version + "\nGitHub - https://github.com/amitxv");
     args::HelpFlag help(parser, "help", "display this help menu", {"help"});
