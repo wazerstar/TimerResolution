@@ -40,7 +40,7 @@ jobs:
 
       - name: Build executable
         run: |
-          MSBuild.exe .\${{ env.prog }}\${{ env.prog }}.sln -p:Configuration=Release
+          MSBuild.exe .\${{ env.prog }}\${{ env.prog }}.sln -p:Configuration=Release -p:Platform=x64
 
       - name: Upload to release
         uses: softprops/action-gh-release@v1
