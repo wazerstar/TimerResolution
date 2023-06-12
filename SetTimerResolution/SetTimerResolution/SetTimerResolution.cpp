@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <iostream>
 #include <windows.h>
+#include <tlhelp32.h>
 
 typedef NTSTATUS(CALLBACK* NTQUERYTIMERRESOLUTION)(
 	OUT PULONG MinimumResolution,
@@ -14,6 +15,33 @@ typedef NTSTATUS(CALLBACK* NTSETTIMERRESOLUTION)(
 	OUT PULONG CurrentResolution);
 
 typedef BOOL(WINAPI* PSET_PROCESS_INFORMATION)(HANDLE, PROCESS_INFORMATION_CLASS, LPVOID, DWORD);
+
+int CountProcessInstances(const std::wstring& processName) {
+	int count = 0;
+
+	HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+	if (hSnapshot == INVALID_HANDLE_VALUE) {
+		return count;
+	}
+
+	PROCESSENTRY32 processEntry;
+	processEntry.dwSize = sizeof(PROCESSENTRY32);
+
+	if (!Process32First(hSnapshot, &processEntry)) {
+		CloseHandle(hSnapshot);
+		return count;
+	}
+
+	do {
+		std::wstring currentProcessName(processEntry.szExeFile);
+		if (currentProcessName == processName) {
+			count++;
+		}
+	} while (Process32Next(hSnapshot, &processEntry));
+
+	CloseHandle(hSnapshot);
+	return count;
+}
 
 int main(int argc, char** argv) {
 	std::string version = "0.1.1";
@@ -35,6 +63,11 @@ int main(int argc, char** argv) {
 	} catch (args::ValidationError e) {
 		std::cerr << e.what();
 		std::cerr << parser;
+		return 1;
+	}
+
+	if (CountProcessInstances(L"SetTimerResolution.exe") > 1) {
+		std::cerr << "Another instance of SetTimerResolution is already running. Close all instances and try again";
 		return 1;
 	}
 
