@@ -89,12 +89,14 @@ int main(int argc, char** argv) {
 
         sort(sleep_delays.begin(), sleep_delays.end());
 
+        int size = sleep_delays.size();
+
         double sum = 0.0;
         for (double delay : sleep_delays) {
             sum += delay;
         }
 
-        double average = sum / sleep_delays.size();
+        double average = sum / size;
 
         // stdev
         double standard_deviation = 0.0;
@@ -103,7 +105,7 @@ int main(int argc, char** argv) {
             standard_deviation += pow(delay - average, 2);
         }
 
-        double stdev = sqrt(standard_deviation / sleep_delays.size());
+        double stdev = sqrt(standard_deviation / size);
 
         std::cout << "\nMax: " << sleep_delays.back() << "\n";
         std::cout << "Avg: " << average << "\n";
