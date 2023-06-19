@@ -32,6 +32,11 @@ int main(int argc, char** argv) {
         return 1;
     }
 
+    if (samples && args::get(samples) < 2) {
+        std::cerr << "--samples must be larger than 1\n";
+        return 1;
+    }
+
     ULONG minimum_resolution, maximum_resolution, current_resolution;
     LARGE_INTEGER start, end, freq;
     std::vector<double> sleep_delays;
