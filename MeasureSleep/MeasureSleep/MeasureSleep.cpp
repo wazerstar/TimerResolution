@@ -3,12 +3,9 @@
 #include <iomanip>
 #include <iostream>
 #include <vector>
-#include <windows.h>
+#include <Windows.h>
 
-typedef NTSTATUS(CALLBACK* NTQUERYTIMERRESOLUTION)(
-    OUT PULONG MinimumResolution,
-    OUT PULONG MaximumResolution,
-    OUT PULONG CurrentResolution);
+extern "C" NTSYSAPI NTSTATUS NTAPI NtQueryTimerResolution(PULONG MinimumResolution, PULONG MaximumResolution, PULONG CurrentResolution);
 
 int main(int argc, char** argv) {
     std::string version = "0.1.4";
@@ -43,19 +40,10 @@ int main(int argc, char** argv) {
 
     QueryPerformanceFrequency(&freq);
 
-    HMODULE ntdll = LoadLibrary(L"NtDll.dll");
-
-    if (!ntdll) {
-        std::cerr << "LoadLibrary failed\n";
-        return 1;
-    }
-
     if (!SetPriorityClass(GetCurrentProcess(), REALTIME_PRIORITY_CLASS)) {
         std::cerr << "SetPriorityClass failed\n";
         return 1;
     }
-
-    NTQUERYTIMERRESOLUTION NtQueryTimerResolution = (NTQUERYTIMERRESOLUTION)GetProcAddress(ntdll, "NtQueryTimerResolution");
 
     for (int i = 1;; i++) {
         // get current resolution
@@ -94,7 +82,7 @@ int main(int argc, char** argv) {
 
         sort(sleep_delays.begin(), sleep_delays.end());
 
-        int size = sleep_delays.size();
+        size_t size = sleep_delays.size();
 
         double sum = 0.0;
         for (double delay : sleep_delays) {
@@ -110,7 +98,7 @@ int main(int argc, char** argv) {
             standard_deviation += pow(delay - average, 2);
         }
 
-        double stdev = sqrt(standard_deviation / size);
+        double stdev = sqrt(standard_deviation / (size - 1));
 
         std::cout << "\nMax: " << sleep_delays.back() << "\n";
         std::cout << "Avg: " << average << "\n";
