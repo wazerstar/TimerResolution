@@ -100,6 +100,8 @@ int main(int argc, char** argv) {
 
         double stdev = sqrt(standard_deviation / (size - 1));
 
+        std::cout << "\nResults from " << args::get(samples) - 1 << " samples\n";
+
         std::cout << "\nMax: " << sleep_delays.back() << "\n";
         std::cout << "Avg: " << average << "\n";
         std::cout << "Min: " << sleep_delays.front() << "\n";
