@@ -9,7 +9,7 @@ extern "C" NTSYSAPI NTSTATUS NTAPI NtSetTimerResolution(ULONG DesiredResolution,
 
 typedef BOOL(WINAPI* PSET_PROCESS_INFORMATION)(HANDLE, PROCESS_INFORMATION_CLASS, LPVOID, DWORD);
 
-int CountProcessInstances(const std::wstring& processName) {
+int CountProcessInstances(const std::wstring& process_name) {
     int count = 0;
 
     HANDLE handle = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
@@ -27,7 +27,7 @@ int CountProcessInstances(const std::wstring& processName) {
 
     do {
         std::wstring current_process(process_entry.szExeFile);
-        if (current_process == processName) {
+        if (current_process == process_name) {
             count++;
         }
     } while (Process32Next(handle, &process_entry));
@@ -101,6 +101,6 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    std::cout << std::fixed << std::setprecision(12) << "Resolution set to: " << (current_resolution / 10000.0) << "ms\n";
+    std::cout << "Resolution set to: " << (current_resolution / 10000.0) << "ms\n";
     Sleep(INFINITE);
 }

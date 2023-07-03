@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
         double delta_ms = delta_s * 1000;
         double delta_from_sleep = delta_ms - 1;
 
-        std::cout << std::fixed << std::setprecision(12) << "Resolution: " << (current_resolution / 10000.0) << "ms, Sleep(1) slept " << delta_ms << "ms (delta: " << delta_from_sleep << ")\n";
+        std::cout << "Resolution: " << (current_resolution / 10000.0) << "ms, Sleep(1) slept " << delta_ms << "ms (delta: " << delta_from_sleep << ")\n";
 
         if (samples) {
             sleep_delays.push_back(delta_from_sleep);
