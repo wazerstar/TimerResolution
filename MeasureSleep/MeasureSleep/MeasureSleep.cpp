@@ -10,7 +10,7 @@ extern "C" NTSYSAPI NTSTATUS NTAPI NtQueryTimerResolution(PULONG MinimumResoluti
 int main(int argc, char** argv) {
     std::string version = "0.1.5";
 
-    args::ArgumentParser parser("MeasureSleep " + version + "\nGitHub - https://github.com/amitxv");
+    args::ArgumentParser parser("MeasureSleep Version " + version + "\nCopyright (C) github.com/amitxv. All rights reserved.\n");
     args::HelpFlag help(parser, "help", "display this help menu", { "help" });
     args::ValueFlag<int> samples(parser, "", "measure the Sleep(1) deltas for a specified amount of samples then compute the maximum, average, minimum and stdev from the collected samples", { "samples" });
 
