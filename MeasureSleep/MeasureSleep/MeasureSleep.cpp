@@ -8,7 +8,7 @@
 extern "C" NTSYSAPI NTSTATUS NTAPI NtQueryTimerResolution(PULONG MinimumResolution, PULONG MaximumResolution, PULONG CurrentResolution);
 
 int main(int argc, char** argv) {
-    std::string version = "0.1.4";
+    std::string version = "0.1.5";
 
     args::ArgumentParser parser("MeasureSleep " + version + "\nGitHub - https://github.com/amitxv");
     args::HelpFlag help(parser, "help", "display this help menu", { "help" });

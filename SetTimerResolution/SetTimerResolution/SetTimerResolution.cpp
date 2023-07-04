@@ -37,7 +37,7 @@ int CountProcessInstances(const std::wstring& process_name) {
 }
 
 int main(int argc, char** argv) {
-    std::string version = "0.1.2";
+    std::string version = "0.1.3";
 
     args::ArgumentParser parser("SetTimerResolution " + version + "\nGitHub - https://github.com/amitxv");
     args::HelpFlag help(parser, "", "display this help menu", { "help" });
