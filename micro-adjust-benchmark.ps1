@@ -31,7 +31,7 @@ function main() {
         }
     }
 
-    "RequestedResolutionMs,DeltaMs,STDEV" | Out-File results.csv
+    "RequestedResolutionMs,DeltaMs,STDEV" | Out-File results.txt
 
     for ($i = $START; $i -le $END; $i += $INCREMENT) {
         $i = [math]::Round($i, 3)
@@ -54,12 +54,12 @@ function main() {
         $avg = $avg -replace "Avg: "
         $stdev = $stdev -replace "STDEV: "
 
-        "$($i), $([math]::Round([double]$avg, 3)), $($stdev)" | Out-File results.csv -Append
+        "$($i), $([math]::Round([double]$avg, 3)), $($stdev)" | Out-File results.txt -Append
 
         Stop-Process -Name "SetTimerResolution" -ErrorAction SilentlyContinue
     }
 
-    Write-Host "info: results saved in results.csv"
+    Write-Host "info: results saved in results.txt"
     return 0
 }
 
