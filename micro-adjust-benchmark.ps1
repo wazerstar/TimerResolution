@@ -39,7 +39,6 @@ function main() {
         Write-Host "info: benchmarking $($i)ms"
 
         Start-Process ".\SetTimerResolution.exe" -ArgumentList @("--resolution", ($i * 1E4), "--no-console")
-        Start-Sleep 2
 
         $output = .\MeasureSleep.exe --samples $SAMPLES
         $outputLines = $output -split "`n"
