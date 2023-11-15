@@ -19,7 +19,11 @@ Thanks to a comment on the [Great Rule Change](https://randomascii.wordpress.com
 "GlobalTimerResolutionRequests"=dword:00000001
 ```
 
-# Building
+## Lower Resolution yet Higher Precision?
+
+Expand [Micro-adjusting timer resolution for higher precision](https://github.com/amitxv/PC-Tuning/blob/main/docs/research.md#micro-adjusting-timer-resolution-for-higher-precision) for a detailed explanation. The [micro-adjust-benchmark.ps1](/micro-adjust-benchmark.ps1) script can be used to automate the process.
+
+## Building
 
 ```powershell
 git clone https://github.com/amitxv/TimerResolution.git
