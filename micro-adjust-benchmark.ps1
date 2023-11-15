@@ -14,7 +14,7 @@ function main() {
     $iterations = ($END - $START) / $INCREMENT
     $total_ms = $iterations * 102 * $SAMPLES
 
-    Write-Host "Approximate worst-case estimated time for completion: $([math]::Round($total_ms / 6E4, 2))mins)"
+    Write-Host "Approximate worst-case estimated time for completion: $([math]::Round($total_ms / 6E4, 2))mins"
     Write-Host "Worst-case is determined by assuming Sleep(1) = ~2ms with 1ms Timer Resolution"
     Write-Host "Start: $($START)ms, End: $($END)ms, Increment: $($INCREMENT)ms, Samples: $($SAMPLES)"
 
