@@ -23,6 +23,10 @@ Thanks to a comment on the [Great Rule Change](https://randomascii.wordpress.com
 
 Expand [Micro-adjusting timer resolution for higher precision](https://github.com/amitxv/PC-Tuning/blob/main/docs/research.md#micro-adjusting-timer-resolution-for-higher-precision) for a detailed explanation. The [micro-adjust-benchmark.ps1](/micro-adjust-benchmark.ps1) script can be used to automate the process.
 
+Visualize the results with [chart-studio.plotly.com](https://chart-studio.plotly.com/create).
+
+<img src="./img/results-example.png" width="1000">
+
 ## Building
 
 ```powershell
