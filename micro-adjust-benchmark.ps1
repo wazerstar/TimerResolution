@@ -1,7 +1,9 @@
-$INCREMENT = 0.002
-$START = 0.5
-$END = 0.8
-$SAMPLES = 20
+param(
+    [double]$INCREMENT = 0.002,
+    [double]$START = 0.5,
+    [double]$END = 0.8,
+    [int]$SAMPLES = 20
+)
 
 function Is-Admin() {
     $current_principal = New-Object Security.Principal.WindowsPrincipal([Security.Principal.WindowsIdentity]::GetCurrent())
