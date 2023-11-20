@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    std::string version = "0.1.6";
+    std::string version = "0.1.7";
 
     args::ArgumentParser parser("MeasureSleep Version " + version + " - GPLv3\nGitHub - https://github.com/amitxv\n");
     args::HelpFlag help(parser, "help", "display this help menu", { "help" });

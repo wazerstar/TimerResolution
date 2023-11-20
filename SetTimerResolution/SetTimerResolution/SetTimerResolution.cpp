@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    std::string version = "0.1.3";
+    std::string version = "0.1.4";
 
     args::ArgumentParser parser("SetTimerResolution Version " + version + " - GPLv3\nGitHub - https://github.com/amitxv\n");
     args::HelpFlag help(parser, "", "display this help menu", { "help" });
