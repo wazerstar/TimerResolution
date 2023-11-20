@@ -47,15 +47,15 @@ function main() {
         $outputLines = $output -split "`n"
 
         foreach ($line in $outputLines) {
-            if ($line -match "Avg: (.*)") {
-                $avg = $Matches[1]
-            } elseif ($line -match "STDEV: (.*)") {
-                $stdev = $Matches[1]
+            $avg_match = $line -match "Avg: (.*)"
+            $stdev_match = $line -match "STDEV: (.*)"
+
+            if ($avg_match) {
+                $avg = $matches[1] -replace "Avg: "
+            } elseif ($stdev_match) {
+                $stdev = $matches[1] -replace "STDEV: "
             }
         }
-
-        $avg = $avg -replace "Avg: "
-        $stdev = $stdev -replace "STDEV: "
 
         "$($i), $([math]::Round([double]$avg, 3)), $($stdev)" | Out-File results.txt -Append
 
