@@ -9,22 +9,6 @@ extern "C" NTSYSAPI NTSTATUS NTAPI NtSetTimerResolution(ULONG DesiredResolution,
 
 typedef BOOL(WINAPI* PSET_PROCESS_INFORMATION)(HANDLE, PROCESS_INFORMATION_CLASS, LPVOID, DWORD);
 
-bool IsAdmin() {
-    bool admin = false;
-    HANDLE hToken = NULL;
-
-    if (OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) {
-        TOKEN_ELEVATION elevation;
-        DWORD size;
-        if (GetTokenInformation(hToken, TokenElevation, &elevation, sizeof(elevation), &size)) {
-            admin = elevation.TokenIsElevated;
-        }
-        CloseHandle(hToken);
-    }
-
-    return admin;
-}
-
 int CountProcessInstances(const std::wstring& process_name) {
     int count = 0;
 
@@ -53,11 +37,6 @@ int CountProcessInstances(const std::wstring& process_name) {
 }
 
 int main(int argc, char** argv) {
-    if (!IsAdmin()) {
-        std::cerr << "administrator privileges required\n";
-        return 1;
-    }
-
     std::string version = "0.1.4";
 
     args::ArgumentParser parser("SetTimerResolution Version " + version + " - GPLv3\nGitHub - https://github.com/amitxv\n");
