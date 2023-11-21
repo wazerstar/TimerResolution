@@ -43,6 +43,9 @@ function main() {
 
         Start-Process ".\SetTimerResolution.exe" -ArgumentList @("--resolution", ($i * 1E4), "--no-console")
 
+        # unexpected results if there isn't a small delay after setting the resolution
+        Start-Sleep 1
+
         $output = .\MeasureSleep.exe --samples $SAMPLES
         $outputLines = $output -split "`n"
 
