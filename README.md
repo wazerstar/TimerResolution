@@ -6,7 +6,7 @@ See [Fixing timing precision in Windows after "The Great Rule Change"](https://g
 
 ``MeasureSleep`` is used to measure the precision of Sleep(1). The closer it sleeps to 1ms in reality, the better. By default, it sits in an infinite loop measuring the sleep deltas, but you can use the ``--samples`` argument to get average, STDEV metrics.
 
-``SetTimerResolution`` is used to request a higher resolution. To automatically start a hidden instance of the program when the system starts and raise the resolution to 0.5ms, place the binary somewhere safe and create a shortcut in ``shell:startup`` with the following target:
+``SetTimerResolution`` is used to request a higher resolution. To automatically start a hidden instance of the program when the system starts and raise the resolution to 0.5ms, place the binary somewhere safe and create a shortcut in ``shell:startup`` with the target below. Note that this method only works when UAC is disabled. If UAC is enabled, task scheduler may be used to start a program at startup with admin privileges.
 
 ```
 C:\SetTimerResolution.exe --resolution 5000 --no-console
