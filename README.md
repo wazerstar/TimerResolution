@@ -2,6 +2,8 @@
 
 ## [Downloads](https://github.com/amitxv/TimerResolution/releases)
 
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/amitxv)
+
 See [Fixing timing precision in Windows after "The Great Rule Change"](https://github.com/amitxv/PC-Tuning/blob/main/docs/research.md#fixing-timing-precision-in-windows-after-the-great-rule-change) for a detailed explanation regarding the techniques used to restore the old timer resolution implementation otherwise nothing below will make sense.
 
 ``MeasureSleep`` is used to measure the precision of Sleep(1). The closer it sleeps to 1ms in reality, the better. By default, it sits in an infinite loop measuring the sleep deltas, but you can use the ``--samples`` argument to get average, STDEV metrics.
