@@ -37,8 +37,6 @@ function main() {
     "RequestedResolutionMs,DeltaMs,STDEV" | Out-File results.txt
 
     for ($i = $START; $i -le $END; $i += $INCREMENT) {
-        $i = [math]::Round($i, 3)
-
         Write-Host "info: benchmarking $($i)ms"
 
         Start-Process ".\SetTimerResolution.exe" -ArgumentList @("--resolution", ($i * 1E4), "--no-console")
