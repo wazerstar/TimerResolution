@@ -1,6 +1,6 @@
 # TimerResolution
 
-## [Downloads](https://github.com/amitxv/TimerResolution/releases)
+[![Downloads](https://img.shields.io/github/downloads/amitxv/TimerResolution/total.svg)](https://github.com/amitxv/TimerResolution/releases)
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/amitxv)
 
