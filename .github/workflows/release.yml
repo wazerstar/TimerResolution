@@ -43,7 +43,5 @@ jobs:
 
       - name: Upload to release
         uses: softprops/action-gh-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           files: ./${{ env.prog }}/x64/Release/${{ env.prog }}.exe
