@@ -1,8 +1,23 @@
 name: Create release
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version of the specified program to build (e.g. 1.0.0). This will be used for the tag and release name."
+        required: true
+
+      program:
+        description: "Select the program to build."
+        required: true
+        default: "SetTimerResolution"
+        type: choice
+        options:
+          - "SetTimerResolution"
+          - "MeasureSleep"
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -12,17 +27,6 @@ jobs:
       VCPKG_DEFAULT_TRIPLET: x64-windows
 
     steps:
-      - name: Set program name variable
-        run: |
-          if ("${{ github.event.release.name }}" -match "SetTimerResolution") {
-              Add-Content -Path $env:GITHUB_ENV -Value "prog=SetTimerResolution"
-          } elseif ("${{ github.event.release.name }}" -match "MeasureSleep") {
-              Add-Content -Path $env:GITHUB_ENV -Value "prog=MeasureSleep"
-          } else {
-              Write-Host "error: unmatched release name"
-              exit 1
-          }
-
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -39,9 +43,12 @@ jobs:
         run: .\vcpkg\vcpkg.exe install
 
       - name: Build executable
-        run: MSBuild.exe .\${{ env.prog }}\${{ env.prog }}.sln -p:Configuration=Release -p:Platform=x64
+        run: MSBuild.exe .\${{ inputs.program }}\${{ inputs.program }}.sln -p:Configuration=Release -p:Platform=x64
 
-      - name: Upload to release
-        uses: softprops/action-gh-release@v1
+      - name: Create release
+        uses: ncipollo/release-action@v1
         with:
-          files: ./${{ env.prog }}/x64/Release/${{ env.prog }}.exe
+          tag: ${{ inputs.version }}
+          name: ${{ inputs.program }} v${{ inputs.version }}
+          artifacts: ./${{ inputs.program }}/x64/Release/${{ inputs.program }}.exe
+          generateReleaseNotes: true
