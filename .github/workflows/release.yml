@@ -48,7 +48,7 @@ jobs:
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ inputs.version }}
+          tag: ${{ inputs.program }}-v${{ inputs.version }}
           name: ${{ inputs.program }} v${{ inputs.version }}
           artifacts: ./${{ inputs.program }}/x64/Release/${{ inputs.program }}.exe
           generateReleaseNotes: true
