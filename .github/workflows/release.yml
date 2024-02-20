@@ -16,6 +16,12 @@ on:
           - "SetTimerResolution"
           - "MeasureSleep"
 
+      pre-release:
+        description: "Pre-release"
+        required: true
+        default: false
+        type: boolean
+
 permissions:
   contents: write
 
@@ -50,5 +56,6 @@ jobs:
         with:
           tag: ${{ inputs.program }}-v${{ inputs.version }}
           name: ${{ inputs.program }} v${{ inputs.version }}
+          prerelease: ${{ inputs.pre-release }}
           artifacts: ./${{ inputs.program }}/x64/Release/${{ inputs.program }}.exe
           generateReleaseNotes: true
