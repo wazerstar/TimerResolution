@@ -27,7 +27,7 @@ Expand [Micro-adjusting timer resolution for higher precision](https://github.co
 
 Visualize the results with [chart-studio.plotly.com](https://chart-studio.plotly.com/create).
 
-<img src="./img/results-example.png" width="1000">
+<img src="/assets/img/results-example.png" width="1000">
 
 ## Building
 
