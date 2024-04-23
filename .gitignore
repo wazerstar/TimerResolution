@@ -36,3 +36,4 @@ vcpkg_installed
 x64
 *.vs
 .vscode
+/vcpkg

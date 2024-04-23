@@ -8,8 +8,8 @@ on:
         description: "Version of the program to build. This will be used for the tag and release name."
         required: true
 
-      program:
-        description: "Select the program to build."
+      target:
+        description: "Select target to build."
         required: true
         default: "SetTimerResolution"
         type: choice
@@ -50,12 +50,12 @@ jobs:
         run: .\vcpkg\vcpkg.exe install
 
       - name: Build executable
-        run: MSBuild.exe .\${{ inputs.program }}\${{ inputs.program }}.sln -p:Configuration=Release -p:Platform=x64
+        run: MSBuild.exe .\TimerResolution.sln -p:Configuration=Release -p:Platform=x64 -t:${{ inputs.target }}
 
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
-          tag: ${{ inputs.program }}-v${{ inputs.version }}
-          name: ${{ inputs.program }} v${{ inputs.version }}
+          tag: ${{ inputs.target }}-v${{ inputs.version }}
+          name: ${{ inputs.target }} v${{ inputs.version }}
           prerelease: ${{ inputs.pre-release }}
-          artifacts: ./${{ inputs.program }}/x64/Release/${{ inputs.program }}.exe
+          artifacts: ./x64/Release/${{ inputs.target }}.exe
