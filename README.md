@@ -35,5 +35,4 @@ $env:VCPKG_DEFAULT_TRIPLET = "x64-windows"
 # install dependencies
 vcpkg install
 # replace "SetTimerResolution" with "MeasureSleep" if desired
-MSBuild .\SetTimerResolution\SetTimerResolution.sln -p:Configuration=Release
-```
+MSBuild.exe .\TimerResolution.sln -p:Configuration=Release -p:Platform=x64 -t:SetTimerResolution```
