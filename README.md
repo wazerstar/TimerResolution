@@ -17,11 +17,9 @@ Thanks to a comment on the [Great Rule Change](https://randomascii.wordpress.com
 "GlobalTimerResolutionRequests"=dword:00000001
 ```
 
-## Lower Resolution yet Higher Precision?
+## Precision vs. Resolution Graph
 
-The [micro-adjust-benchmark.ps1](/micro-adjust-benchmark.ps1) script can be used to automate the process of plotting precision against resolutions.
-
-Visualize the results with [chart-studio.plotly.com](https://chart-studio.plotly.com/create).
+The [micro-adjust-benchmark.ps1](/micro-adjust-benchmark.ps1) script can be used to automate the process of plotting precision against resolutions. The results can be visualized with [chart-studio.plotly.com](https://chart-studio.plotly.com/create).
 
 <img src="/assets/img/results-example.png" width="1000">
 
